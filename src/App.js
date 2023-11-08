@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useLocalStorage } from "./hooks";
 import "./App.css";
 import Button from "./Button";
 
@@ -6,10 +6,13 @@ const BUTTON_ONE = "buttonOne";
 const BUTTON_TWO = "buttonTwo";
 
 function App() {
-  const [totalClickCount, setTotalClickCount] = useState({
-    [BUTTON_ONE]: 0,
-    [BUTTON_TWO]: 0,
-  });
+  const [totalClickCount, setTotalClickCount] = useLocalStorage(
+    "totalClickCount",
+    {
+      [BUTTON_ONE]: 0,
+      [BUTTON_TWO]: 0,
+    }
+  );
 
   const handleClick = (key) => {
     const newClickCount = totalClickCount[key] + 1;
